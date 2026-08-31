@@ -1,0 +1,19 @@
+{
+  "tasks": {
+    "dev": "deno run -A npm:vite",
+    "build": "deno run -A npm:vite build",
+    "preview": "deno run -A npm:vite preview",
+    "shoot": "deno run -A scripts/shoot.ts"
+  },
+  "imports": {
+    "three": "npm:three@^0.185.1"
+  },
+  "compilerOptions": {
+    "lib": ["deno.window", "dom", "dom.iterable"]
+  },
+  "nodeModulesDir": "auto",
+  "fmt": {
+    "lineWidth": 100,
+    "exclude": ["public/", "dist/", ".cache/"]
+  }
+}

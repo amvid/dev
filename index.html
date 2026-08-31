@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>amvid.dev</title>
+    <meta name="description" content="amvid.dev" />
+    <meta name="theme-color" content="#000205" />
+    <link rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='3' fill='white'/></svg>" />
+    <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --ink: rgba(233, 238, 255, 0.88);
+      --ink-dim: rgba(233, 238, 255, 0.38);
+      --ink-faint: rgba(233, 238, 255, 0.2);
+      --edge: max(1.5rem, env(safe-area-inset-left));
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      background: #000205;
+      color: var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      overflow: hidden;
+      overscroll-behavior: none;
+    }
+
+    #sky {
+      position: fixed;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      cursor: grab;
+      /* The drawing buffer is a third of the viewport; this is what upscales it
+         into visible pixel blocks instead of a blurry stretch. */
+      image-rendering: pixelated;
+    }
+    #sky:active {
+      cursor: grabbing;
+    }
+
+    /* The overlay never eats pointer events — the whole page is draggable sky. */
+    #overlay {
+      position: fixed;
+      inset: auto 0 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 1.5rem;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: var(--edge) var(--edge) max(var(--edge), env(safe-area-inset-bottom));
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 2.4s ease 0.6s;
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    body.ready #overlay {
+      opacity: 1;
+    }
+
+    #overlay a {
+      color: var(--ink-dim);
+      pointer-events: auto;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    #overlay a:hover {
+      color: var(--ink);
+    }
+
+    .mark {
+      color: var(--ink);
+    }
+
+    .fallback {
+      display: none;
+      position: fixed;
+      inset: 0;
+      place-content: center;
+      padding: 2rem;
+      text-align: center;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--ink-dim);
+    }
+    body.unsupported .fallback {
+      display: grid;
+    }
+    body.unsupported #overlay {
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      #overlay {
+        font-size: 0.68rem;
+        letter-spacing: 0.16em;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #overlay {
+        transition-duration: 0.01s;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <canvas id="sky"></canvas>
+
+    <div id="overlay">
+      <span class="mark">amvid.dev</span>
+      <a href="https://github.com/amvid" rel="noreferrer">GitHub</a>
+    </div>
+
+    <div class="fallback">
+      <p>This needs WebGL, which this browser does not seem to have.</p>
+    </div>
+
+    <noscript>
+      <div class="fallback" style="display: grid">
+        <p>This is drawn with JavaScript. It needs to be enabled.</p>
+      </div>
+    </noscript>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

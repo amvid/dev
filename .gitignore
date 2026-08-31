@@ -1,0 +1,8 @@
+node_modules/
+dist/
+
+# Raw upstream catalogues (~14MB). Re-downloaded on demand by `deno task catalog`;
+# the small derived assets in public/ are what actually ship.
+.cache/
+
+.DS_Store

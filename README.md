@@ -12,5 +12,4 @@ Entirely procedural — no data files, no network calls, no dependencies beyond 
 deno task dev       # dev server with HMR
 deno task build     # -> dist/
 deno task preview   # serve dist/ locally
-deno task shoot     # headless screenshot of the preview server
 ```

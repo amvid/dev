@@ -2,8 +2,7 @@
   "tasks": {
     "dev": "deno run -A npm:vite",
     "build": "deno run -A npm:vite build",
-    "preview": "deno run -A npm:vite preview",
-    "shoot": "deno run -A scripts/shoot.ts"
+    "preview": "deno run -A npm:vite preview"
   },
   "imports": {
     "three": "npm:three@^0.185.1"
@@ -12,8 +11,15 @@
     "lib": ["deno.window", "dom", "dom.iterable"]
   },
   "nodeModulesDir": "auto",
+  "deploy": {
+    "build": "deno task build",
+    "runtime": {
+      "type": "static",
+      "cwd": "./dist"
+    }
+  },
   "fmt": {
     "lineWidth": 100,
-    "exclude": ["public/", "dist/", ".cache/"]
+    "exclude": ["dist/"]
   }
 }

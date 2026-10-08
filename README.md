@@ -1,5 +1,7 @@
 # amvid.dev
 
+https://amvid.dev
+
 An abstract cosmic sky. A domain-warped noise nebula and a few thousand coloured stars, rendered at
 a third of the viewport resolution and upscaled so it reads as pixel art. Drag to look around,
 scroll to zoom.
